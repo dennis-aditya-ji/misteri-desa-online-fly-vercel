@@ -1,0 +1,424 @@
+/* public/styles/style.css - KODE FINAL LENGKAP V4.0 (DENGAN STYLE VOTING/AKSI & ANIMASI) */
+body { margin: 0; font-family: 'Arial', sans-serif; background-color: #f0f0f0; }
+
+/* Struktur Mobile-First */
+#game-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; 
+    max-width: 600px; 
+    margin: 0 auto;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Header */
+header {
+    background: #004d40; /* Hijau Tua Desa */
+    color: white;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+header h1 { margin: 0; font-size: 1.5em; }
+#status-display { font-size: 0.8em; opacity: 0.8; }
+#cycle-status-display {
+    background: #4caf50; /* Hijau Muda */
+    padding: 5px 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 0.9em;
+    /* Tambahkan transisi untuk animasi */
+    transition: all 0.2s ease-in-out; 
+}
+
+/* ANIMASI BARU 1: TIMER WARNING */
+@keyframes pulse-red {
+    0% { transform: scale(1); background: #ff6f61; }
+    50% { transform: scale(1.05); background: #f44336; }
+    100% { transform: scale(1); background: #ff6f61; }
+}
+.timer-warning {
+    animation: pulse-red 1s infinite;
+}
+
+
+/* Modal Nama */
+#name-modal {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+    background: rgba(0,0,0,0.9); color: white; 
+    display: flex; flex-direction: column; justify-content: center; 
+    align-items: center; z-index: 1000;
+    text-align: center;
+}
+#name-modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 80%;
+    max-width: 300px;
+}
+#name-modal input {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1em;
+}
+#name-modal button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #FF6F00; /* Oranye Terang */
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    /* Tambahkan transisi untuk animasi tekan */
+    transition: transform 0.1s ease-out; 
+}
+
+/* ANIMASI BARU 2: POP SAAT TOMBOL DITEKAN */
+.vote-target-btn:active, 
+.action-target-btn:active,
+.join-btn:active,
+#start-game-btn:active,
+#name-modal button:active,
+#create-desa-form-area button:active,
+#form button:active,
+#show-tutorial-btn:active,
+.close-btn:active {
+    transform: scale(0.95); 
+    box-shadow: 0 0 5px rgba(0,0,0,0.5) inset; 
+}
+
+
+/* --- STYLE LOBBY/GAPURA --- */
+#lobby-screen {
+    flex-grow: 1;
+    overflow-y: auto;
+    background: #e0f2f1; 
+}
+#create-desa-form-area {
+    gap: 10px;
+}
+#create-desa-form-area input {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+#create-desa-form-area button {
+    background: #4caf50;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.1s ease-out; 
+}
+.desa-list {
+    list-style: none;
+    padding: 0;
+}
+.desa-list li {
+    background: #fff;
+    margin-bottom: 8px;
+    padding: 12px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 5px solid #00796b; 
+}
+.desa-list li .lobby {
+    color: #00796b;
+    font-weight: bold;
+}
+.desa-list li .playing {
+    color: #FF6F61;
+    font-weight: bold;
+}
+.desa-list li .join-btn {
+    background: #FF6F00; 
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: transform 0.1s ease-out; 
+}
+
+/* --- STYLE UNTUK CHAT/DESA UTAMA --- */
+
+#desa-status-bar {
+    background: #e3f2fd; 
+    color: #1a237e; 
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #b3e5fc;
+    font-size: 0.9em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#desa-status-bar #start-game-btn {
+    background: #FF6F00; color: white; border: none; padding: 8px 12px; border-radius: 5px; 
+    font-weight: bold;
+    font-size: 1em;
+    transition: transform 0.1s ease-out; 
+}
+#desa-status-bar #start-game-btn:disabled {
+    background: #ccc;
+    cursor: default;
+}
+
+/* Area Chat */
+#chat-area {
+    flex-grow: 1; 
+    overflow-y: scroll;
+    padding: 10px;
+}
+#messages { 
+    list-style-type: none; 
+    padding: 0; 
+}
+#messages li { 
+    padding: 8px 0; 
+    border-bottom: 1px dotted #eee;
+    word-wrap: break-word;
+}
+#form {
+    background: #eee;
+    padding: 10px;
+    display: flex;
+}
+#form input {
+    border: none;
+    padding: 10px;
+    flex-grow: 1;
+    border-radius: 5px 0 0 5px;
+}
+#form button {
+    background: #004d40;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    transition: transform 0.1s ease-out; 
+}
+
+/* --- STYLE KARTU PERAN --- */
+#role-card-display {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+    background: rgba(0,0,0,0.95); color: white; 
+    display: flex; flex-direction: column; justify-content: center; 
+    align-items: center; z-index: 2000;
+    text-align: center;
+}
+
+/* ANIMASI BARU 3: KARTU PERAN POP-IN */
+@keyframes role-enter {
+    0% { opacity: 0; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+.role-card {
+    background: #3e2723; /* Coklat Tua */
+    padding: 25px;
+    border-radius: 10px;
+    max-width: 80%;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    /* Terapkan animasi saat muncul */
+    animation: role-enter 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards; 
+}
+.role-card h2 { margin-top: 0; }
+.role-card button {
+    background: #FF6F00; 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.1s ease-out; 
+}
+
+/* --- STYLE MODAL AKSI MALAM/VOTING --- */
+.full-screen-modal {
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    background: rgba(0,0,0,0.9); 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    z-index: 3000; 
+}
+
+.action-modal {
+    background: #fff;
+    color: #333;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    width: 90%;
+    max-width: 450px;
+    text-align: center;
+}
+
+/* Container untuk tombol aksi/voting */
+.action-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Style tombol target voting/aksi */
+.vote-target-btn {
+    background: #00796b; 
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s; /* Tambahkan transition untuk efek hover dan pop */
+}
+
+.vote-target-btn:hover:not(:disabled) {
+    background: #004d40;
+}
+
+.vote-target-btn:disabled {
+    background: #ccc;
+    cursor: default;
+}
+
+/* Style khusus untuk tombol LEWATKAN VOTING */
+.skip-vote {
+    background: #FF6F61; 
+    margin-bottom: 15px; 
+}
+.skip-vote:hover:not(:disabled) {
+    background: #d32f2f;
+}
+
+
+/* --- STYLE TUTORIAL --- */
+
+.tutorial-modal-content {
+    background: #fff8e1; 
+    color: #3e2723; 
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    max-width: 90%;
+    max-height: 90vh;
+    overflow-y: auto; 
+    position: relative;
+    border: 3px solid #795548; 
+    text-align: left;
+}
+
+.tutorial-modal-content .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #ff6f61;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1em;
+    transition: transform 0.1s ease-out; 
+}
+
+#tutorial-content h3, .tutorial-modal-content h2 {
+    color: #3e2723; 
+    border-bottom: 2px solid #d7ccc8;
+    padding-bottom: 5px;
+    margin-top: 15px;
+    font-weight: 900;
+}
+
+.role-desc-item {
+    background: #efebe9; 
+    padding: 12px;
+    margin-bottom: 10px;
+    border-left: 4px solid #795548;
+    border-radius: 3px;
+}
+
+/* Footer */
+#developer-footer {
+    padding: 5px;
+    background: #263238;
+    color: #ccc;
+    font-size: 0.7em;
+    text-align: center;
+
+}
+
+.game-over-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 4000;
+    overflow-y: auto; 
+}
+
+.game-over-card {
+    background-color: #3e2723;
+    border: 2px solid #FF6F00;
+    color: white;
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 90%; 
+    max-height: 90%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+    overflow-y: auto;
+}
+
+.game-over-card h2 {
+    color: #ffd700;
+    margin-bottom: 15px;
+    font-size: 1.8em;
+}
+.game-over-card p {
+    margin-bottom: 5px;
+}
+.game-over-card h3 {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 5px;
+}
+.game-over-card button {
+    background-color: #FF6F00;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: transform 0.1s ease-out; 
+}
+.game-over-card button:active {
+    transform: scale(0.95);
+}

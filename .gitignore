@@ -1,0 +1,16 @@
+# Dependency directories
+/node_modules
+
+# Logs
+*.log
+
+# Runtime data
+npm-debug.log*
+
+# Environment variables
+.env
+.env.local
+
+# Build artifacts
+/dist
+/build

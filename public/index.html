@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Misteri di Sebuah Desa</title> 
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+
+    <div id="name-modal">
+        <h2>Selamat Datang, Warga Desa!</h2>
+        <form id="name-form">
+            <input 
+                id="nickname-input" 
+                placeholder="Nama Panggilan Keren di Desa..." 
+                required 
+            >
+            <button type="submit">Masuk Desa</button>
+        </form>
+    </div>
+
+    <div id="game-container" style="display: none;">
+        
+        <header>
+            <h1 id="game-title">MISTERI DI SEBUAH DESA</h1>
+            <div id="status-display">
+                <span id="player-count">0 Warga Online</span> | Lokasi: <span id="current-desa">Gapura</span>
+            </div>
+            <div id="cycle-status-display">Menunggu Permainan Dimulai...</div>
+        </header>
+
+        <main id="lobby-screen" style="padding: 20px;">
+            
+            <div id="welcome-sign">
+                <h2 style="color: #004d40; margin-top: 0; font-size: 1.8em;">SELAMAT DATANG!</h2>
+                <p style="margin-bottom: 20px; font-size: 0.9em;">Masuk ke salah satu Desa untuk mulai bermain.</p>
+                <p id="lobby-nickname-display" style="font-weight: bold;"></p>
+            </div>
+
+            <form id="create-desa-form-area" style="display: flex;">
+                <input type="text" id="new-desa-name" placeholder="Nama Desa (Ex: Desa Hutan Bambu)" required>
+                <button id="submit-create-desa">Buat</button>
+            </form>
+
+            <hr style="margin: 20px 0;">
+            
+            <button id="show-tutorial-btn" style="width: 100%; padding: 10px; background: #FF6F00; color: white; border: none; border-radius: 5px; font-weight: bold; margin-bottom: 20px;">
+                ? Cara Bermain & Daftar Peran
+            </button>
+            
+            <h3>Jelajahi Desa Aktif:</h3>
+            <ul id="active-desas-list" class="desa-list">
+                <li>Belum ada desa yang dibangun. Jadilah Tetua Desa!</li>
+            </ul>
+
+        </main>
+        
+        <div id="room-screen" style="display: none; height: 100%; flex-direction: column;">
+            
+            <div id="desa-status-bar">
+                <span id="desa-player-list">Warga: </span> | <strong id="creator-display"></strong>
+                <button id="start-game-btn" style="display: none;">Mulai Permainan</button>
+            </div>
+            
+            <main id="chat-area">
+                <ul id="messages">
+                </ul>
+            </main>
+            
+            <form id="form" action="">
+                <input id="m" autocomplete="off" placeholder="Ketik disini..." />
+                <button>Kirim</button>
+            </form>
+        </div>
+        
+        <div id="night-action-screen" class="full-screen-modal" style="display: none;">
+            <div class="modal-content action-modal">
+                <div id="night-action-content"></div>
+            </div>
+        </div>
+        
+        <div id="voting-screen" class="full-screen-modal" style="display: none;">
+            <div class="modal-content action-modal">
+                <div id="voting-content"></div>
+            </div>
+        </div>
+        
+        <div id="role-card-display" style="display: none;"></div>
+    </div>
+    
+    <footer id="developer-footer">
+        Dikembangkan oleh Dennis Adityaji
+    </footer>
+    
+    <div id="tutorial-modal" class="full-screen-modal" style="display: none;">
+        <div class="modal-content tutorial-modal-content">
+            <button class="close-btn" id="close-tutorial-btn">Tutup (X)</button>
+            <h2 style="color: #004d40;">Panduan Permainan: Misteri di Sebuah Desa</h2>
+            <div id="tutorial-content">
+                </div>
+        </div>
+    </div>
+   
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="scripts/client.js"></script>
+</body>
+</html>

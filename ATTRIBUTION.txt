@@ -1,0 +1,7 @@
+1	musicDay				https://freesound.org/s/135925/		135925__felixblume__rooster-donkey-dogs-and-birds-at-the-morning-in-the-small-village-of-la-preciosita-in-the-mexican-countryside.mp3
+2	musicNight				https://freesound.org/s/640984/		640986__beautifuldaymonster1968__the-classic-wolf-tv-howl.mp3
+3	sfxConfirm				https://freesound.org/s/270537/		270537__littlerobotsoundfactory__menu_select_00.mp3
+4	sfxCancel 				https://freesound.org/s/140465/		140465__afleetingspeck__packaging-paper-wobble-failed-attempt.mp3
+5	sfxTransition 			https://freesound.org/s/50881/		50881__gabemiller74__werewolf.mp3
+6	sfxDeath / sfxGameOver 	https://freesound.org/s/214084/		214084__vote4banan__help.mp3
+7	sfxClick 				https://freesound.org/s/707041/		707041__vilkas_sound__vs-button-click-04.mp3
