@@ -2,18 +2,19 @@
   "version": 2,
   "builds": [
     {
-      "src": "server.js",
+      "src": "index.js", // <-- Ganti ke index.js
       "use": "@vercel/node"
+      "config": { "includeFiles": ["public/**/*"] }
     }
   ],
-  "routes": [ // Pastikan ada 3 entry di sini
+  "routes": [
     {
       "src": "/socket.io",
-      "dest": "server.js"
+      "dest": "index.js" // <-- Ganti ke index.js
     },
     {
       "src": "/keep-alive",
-      "dest": "server.js"
+      "dest": "index.js" // <-- Ganti ke index.js
     },
     {
       "src": "/(.*)",
