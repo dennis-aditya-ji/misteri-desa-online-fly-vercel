@@ -6,14 +6,18 @@
       "use": "@vercel/node"
     }
   ],
-  "routes": [
+  "routes": [ // Pastikan ada 3 entry di sini
     {
-      "src": "/socket.io/(.*)",
+      "src": "/socket.io",
+      "dest": "server.js"
+    },
+    {
+      "src": "/keep-alive",
       "dest": "server.js"
     },
     {
       "src": "/(.*)",
-      "dest": "public/$1"
+      "dest": "/public/$1"
     }
   ]
 }
