@@ -7,14 +7,10 @@ const path = require('path');
 
 const app = express();
 const server = http.createServer(app); 
-const io = new Server(server, { 
-    cors: {
-        origin: "*", 
-        methods: ["GET", "POST"]
-    }
-});
 
-const PORT = process.env.PORT || 3000;
+// --- PERUBAHAN KRUSIAL UNTUK VERCEL ---
+const io = new Server(server, { 
+});
 
 // Objek untuk menyimpan data pemain: { socketId: { id, name, role, team, desa, isDead, isProtected, vigilanteBullets } }
 const players = {}; 
@@ -25,8 +21,8 @@ const desas = {};
 
 // --- KONSTANTA GAME ---
 const PHASES = {
-    NIGHT: { name: 'Malam', duration: 60 }, // 40 detik
-    DAY: { name: 'Siang', duration: 90 },  // 90 detik
+    NIGHT: { name: 'Malam', duration: 60 }, // 60 detik
+    DAY: { name: 'Siang', duration: 90 }, // 90 detik
     VOTING: { name: 'Voting', duration: 45 } // 45 detik
 };
 
@@ -354,7 +350,7 @@ function checkWinCondition(desaName) {
     }
 
     if (wolves >= villagers) {
-         io.to(desaName).emit('game over', { 
+        io.to(desaName).emit('game over', { 
             winner: 'Penghasut', 
             message: 'Jumlah Penghasut menyamai Warga Desa. Desa dikuasai kebohongan. Penghasut menang!',
             allPlayers: allPlayersInDesa // PASTIKAN ADA
@@ -551,8 +547,8 @@ io.on('connection', (socket) => {
             
             if (desas[desaName].players.length === 0) {
                  if (desas[desaName].game && desas[desaName].game.loopInterval) clearInterval(desas[desaName].game.loopInterval);
-                delete desas[desaName];
-                updateDesasList();
+                 delete desas[desaName];
+                 updateDesasList();
             } else if (desas[desaName].creatorId === socket.id && desas[desaName].players.length > 0) {
                 const newCreatorId = desas[desaName].players[0];
                 desas[desaName].creatorId = newCreatorId;
@@ -574,6 +570,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/keep-alive', (req, res) => {
     res.status(200).send('Server is alive!');
 });
-server.listen(PORT, () => {
-    console.log(`Server siap dijalankan di port ${PORT}`);
-});
+
+// --- FINAL EXPORT UNTUK VERCEL ---
+module.exports = server;
